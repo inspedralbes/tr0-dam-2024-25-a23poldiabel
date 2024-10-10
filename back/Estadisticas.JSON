@@ -1,0 +1,54 @@
+{
+  "estadisticas": [
+    {
+      "id": 1,
+      "respuestas_correctas": 8,
+      "tiempo_terminado": "5m 32s"
+    },
+    {
+      "id": 2,
+      "respuestas_correctas": 7,
+      "tiempo_terminado": "4m 45s"
+    },
+    {
+      "id": 3,
+      "respuestas_correctas": 10,
+      "tiempo_terminado": "6m 10s"
+    },
+    {
+      "id": 4,
+      "respuestas_correctas": 6,
+      "tiempo_terminado": "5m 02s"
+    },
+    {
+      "id": 5,
+      "respuestas_correctas": 9,
+      "tiempo_terminado": "3m 50s"
+    },
+    {
+      "id": 6,
+      "respuestas_correctas": 5,
+      "tiempo_terminado": "6m 30s"
+    },
+    {
+      "id": 7,
+      "respuestas_correctas": 4,
+      "tiempo_terminado": "4m 25s"
+    },
+    {
+      "id": 8,
+      "respuestas_correctas": 7,
+      "tiempo_terminado": "5m 48s"
+    },
+    {
+      "id": 9,
+      "respuestas_correctas": 10,
+      "tiempo_terminado": "3m 15s"
+    },
+    {
+      "id": 10,
+      "respuestas_correctas": 3,
+      "tiempo_terminado": "7m 05s"
+    }
+  ]
+}
