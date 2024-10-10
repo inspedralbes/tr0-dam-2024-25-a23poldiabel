@@ -102,8 +102,6 @@ app.put('/api/editar-pregunta/:id', (req, res) => {
   });
 });
 
-
-
 // Middleware
 app.use(cors());
 app.use(express.json());
@@ -154,9 +152,63 @@ app.get('/api/estadisticas/generar', (req, res) => {
     });
 });
  
+
+app.get('/api/estadisticas', (req, res) => {
+  fs.readFile(path.join(__dirname, 'Estadisticas.JSON'), 'utf8', (err, data) => {
+    if (err) {
+      return res.status(500).json({ message: 'Error al cargar las estadísticas' });
+    }
+    const estadisticas = JSON.parse(data).estadisticas;
+    res.json(estadisticas); // Enviar las estadísticas al frontend
+  });
+});
+
+app.post('/api/agregar-estadistica', (req, res) => {
+  const nuevaEstadistica = req.body;
+  console.log('Recibida nueva estadística:', nuevaEstadistica); // Log para depurar
+
+  // Validación básica
+  if (!nuevaEstadistica.respuestas_correctas || !nuevaEstadistica.tiempo_terminado) {
+    return res.status(400).json({ message: 'Formato de estadística inválido' });
+  }
+
+  fs.readFile(path.join(__dirname, 'Estadisticas.JSON'), 'utf8', (err, data) => {
+    if (err) {
+      console.error('Error al leer el archivo JSON:', err);
+      return res.status(500).json({ message: 'Error al leer el archivo de estadísticas' });
+    }
+
+    const json = JSON.parse(data);
+    nuevaEstadistica.id = json.estadisticas.length + 1; // Asignar un ID nuevo
+    json.estadisticas.push(nuevaEstadistica); // Añadir la nueva estadística
+
+    fs.writeFile(path.join(__dirname, 'Estadisticas.JSON'), JSON.stringify(json, null, 2), (err) => {
+      if (err) {
+        console.error('Error al escribir en el archivo JSON:', err);
+        return res.status(500).json({ message: 'Error al guardar la nueva estadística' });
+      }
+
+      console.log('Estadística añadida correctamente:', nuevaEstadistica); // Log para depurar
+      res.status(201).json({ message: 'Estadística añadida correctamente' });
+    });
+  });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
   
 
 // Iniciar el servidor
 app.listen(port, () => {
-    console.log(`Servidor escuchando en http://localhost:${port}`);
+    console.log(`Servidor escuchando en http://192.168.1.173:${port}`);
 });
