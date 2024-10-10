@@ -37,8 +37,13 @@ app.post('/api/agregar-pregunta', (req, res) => {
     }
 
     const json = JSON.parse(data);
-    nuevaPregunta.id = json.preguntes.length + 1; // Asignar un ID nuevo
-    json.preguntes.push(nuevaPregunta); // Añadir la nueva pregunta
+    const idNuevo = json.preguntes.length + 1; // Asignar un ID nuevo
+    const preguntaConIdPrimero = {
+      id: idNuevo, // Añadir el ID primero
+      ...nuevaPregunta // Añadir las demás propiedades después del ID
+    };
+    
+    json.preguntes.push(preguntaConIdPrimero); // Añadir la nueva pregunta
 
     fs.writeFile(path.join(__dirname, 'Projecte0.json'), JSON.stringify(json, null, 2), (err) => {
       if (err) {
@@ -46,11 +51,12 @@ app.post('/api/agregar-pregunta', (req, res) => {
         return res.status(500).json({ message: 'Error al guardar la nueva pregunta' });
       }
 
-      console.log('Pregunta añadida correctamente:', nuevaPregunta); // Log para depurar
+      console.log('Pregunta añadida correctamente:', preguntaConIdPrimero); // Log para depurar
       res.status(201).json({ message: 'Pregunta añadida correctamente' });
     });
   });
 });
+
 
 
 // Ruta para eliminar una pregunta
@@ -163,32 +169,55 @@ app.get('/api/estadisticas', (req, res) => {
   });
 });
 
-app.post('/api/agregar-estadistica', (req, res) => {
-  const nuevaEstadistica = req.body;
-  console.log('Recibida nueva estadística:', nuevaEstadistica); // Log para depurar
 
-  // Validación básica
+
+
+
+app.post('/api/agregar-estadistica', (req, res) => {
+  let nuevaEstadistica = req.body;
+  console.log('Recibida nueva estadística:', nuevaEstadistica);
+
+  // Validación básica y conversión de campos si es necesario
   if (!nuevaEstadistica.respuestas_correctas || !nuevaEstadistica.tiempo_terminado) {
     return res.status(400).json({ message: 'Formato de estadística inválido' });
   }
 
-  fs.readFile(path.join(__dirname, 'Estadisticas.JSON'), 'utf8', (err, data) => {
+  // Convertir el campo tiempo_terminado a string si no lo es
+  if (typeof nuevaEstadistica.tiempo_terminado !== 'string') {
+    nuevaEstadistica.tiempo_terminado = String(nuevaEstadistica.tiempo_terminado);
+  }
+
+  const estadisticasPath = path.join(__dirname, 'Estadisticas.JSON');
+
+  fs.readFile(estadisticasPath, 'utf8', (err, data) => {
     if (err) {
       console.error('Error al leer el archivo JSON:', err);
       return res.status(500).json({ message: 'Error al leer el archivo de estadísticas' });
     }
 
-    const json = JSON.parse(data);
-    nuevaEstadistica.id = json.estadisticas.length + 1; // Asignar un ID nuevo
-    json.estadisticas.push(nuevaEstadistica); // Añadir la nueva estadística
+    let json;
+    try {
+      json = JSON.parse(data);
+    } catch (parseErr) {
+      console.error('Error al parsear el archivo JSON:', parseErr);
+      return res.status(500).json({ message: 'Error al parsear el archivo de estadísticas' });
+    }
 
-    fs.writeFile(path.join(__dirname, 'Estadisticas.JSON'), JSON.stringify(json, null, 2), (err) => {
+    // Asignar un nuevo ID y reorganizar el objeto para que `id` esté primero
+    const estadisticaConIdPrimero = {
+      id: json.estadisticas.length + 1, // Asignar ID nuevo
+      ...nuevaEstadistica // Añadir las demás propiedades después del ID
+    };
+
+    json.estadisticas.push(estadisticaConIdPrimero); // Añadir la nueva estadística
+
+    fs.writeFile(estadisticasPath, JSON.stringify(json, null, 2), (err) => {
       if (err) {
         console.error('Error al escribir en el archivo JSON:', err);
         return res.status(500).json({ message: 'Error al guardar la nueva estadística' });
       }
 
-      console.log('Estadística añadida correctamente:', nuevaEstadistica); // Log para depurar
+      console.log('Estadística añadida correctamente:', estadisticaConIdPrimero);
       res.status(201).json({ message: 'Estadística añadida correctamente' });
     });
   });
@@ -204,11 +233,9 @@ app.post('/api/agregar-estadistica', (req, res) => {
 
 
 
-
-
   
 
 // Iniciar el servidor
 app.listen(port, () => {
-    console.log(`Servidor escuchando en http://192.168.1.173:${port}`);
+    console.log(`Servidor escuchando en http://192.168.1.213:${port}`);
 });

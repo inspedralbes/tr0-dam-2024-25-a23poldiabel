@@ -49,6 +49,7 @@
       "imatge": "https://images.prismic.io/obikares/68209ada-34e4-425f-85f9-92a39c6aca6c_un.jpg"
     },
     {
+      "id": 13,
       "pregunta": "¿Qué indica una señal redonda con fondo blanco y un número negro en su interiora?",
       "imatge": "https://www.buscatucoche.com/wp-content/uploads/2021/12/tipos-senales-trafico-circulares.jpg",
       "respostes": [
@@ -56,9 +57,19 @@
         "Fin de prohibiciones",
         "Velocidad máxima permitida",
         "Fin de autovía"
+      ]
+    },
+    {
+      "id": 6,
+      "pregunta": "¿Qué indica esta señal?",
+      "imatge": "https://revista.dgt.es/Galerias/test/N-268/Test-268-P01-250x226.jpg",
+      "respostes": [
+        "Proximidad a un cruce con una línea de tranvía.",
+        "La cercanía de un paso a nivel, puente móvil o muelle.",
+        "La cercanía de un paso a nivel al lado derecho.",
+        "Cosas que mueren en el aire"
       ],
-      "resposta_correcta": 2,
-      "id": 6
+      "resposta_correcta": 1
     }
   ]
 }
