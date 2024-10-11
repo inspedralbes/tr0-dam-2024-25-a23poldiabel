@@ -5,7 +5,7 @@ const cors = require('cors');
 const { spawn } = require('child_process');
 
 const app = express();
-const port = 3000;
+const port = 25867;
 
 app.use(cors());
 app.use(express.json());
@@ -209,5 +209,5 @@ app.post('/api/agregar-estadistica', (req, res) => {
 
 // Iniciar el servidor
 app.listen(port, () => {
-  console.log(`Servidor escuchando en http://192.168.0.157:${port}`);
+  console.log(`Servidor escuchando en http://a23poldiabel.dam.inspedralbes.cat:${port}`);
 });

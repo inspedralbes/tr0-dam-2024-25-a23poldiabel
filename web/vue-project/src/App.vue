@@ -83,7 +83,7 @@ export default {
   methods: {
     async cargarPreguntas() {
       try {
-        const response = await fetch('http://localhost:3000/api/preguntes');
+        const response = await fetch('http://a23poldiabel.dam.inspedralbes.cat:25867/api/preguntes');
         if (!response.ok) {
           throw new Error('Error al cargar preguntas');
         }
@@ -97,7 +97,7 @@ export default {
 
     async mostrarEstadisticas() {
       try {
-        const response = await fetch('http://localhost:3000/api/estadisticas/generar');
+        const response = await fetch('http://a23poldiabel.dam.inspedralbes.cat:25867/api/estadisticas/generar');
         if (!response.ok) {
           throw new Error('Error al cargar estadísticas');
         }
@@ -132,7 +132,7 @@ export default {
 
 
       try {
-        const response = await fetch('http://localhost:3000/api/agregar-pregunta', {
+        const response = await fetch('http://a23poldiabel.dam.inspedralbes.cat:25867/api/agregar-pregunta', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -156,7 +156,7 @@ export default {
 
     async eliminarPregunta(id) {
       try {
-        const response = await fetch(`http://localhost:3000/api/eliminar-pregunta/${id}`, {
+        const response = await fetch(`http://a23poldiabel.dam.inspedralbes.cat:25867/api/eliminar-pregunta/${id}`, {
           method: 'DELETE'
         });
 
@@ -182,7 +182,7 @@ export default {
       }
       
       try {
-        const response = await fetch(`http://localhost:3000/api/editar-pregunta/${this.nuevaPregunta.id}`, {
+        const response = await fetch(`http://a23poldiabel.dam.inspedralbes.cat:25867/api/editar-pregunta/${this.nuevaPregunta.id}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json'
