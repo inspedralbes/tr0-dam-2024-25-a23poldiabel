@@ -1,0 +1,184 @@
+{
+  "preguntes": [
+    {
+      "id": 1,
+      "pregunta": "¿Qué indica una señal redonda con fondo blanco y un número negro en su interior?",
+      "respostes": [
+        "Velocidad mínima obligatoria",
+        "Fin de prohibiciones",
+        "Velocidad máxima permitida",
+        "Fin de autovía"
+      ],
+      "resposta_correcta": 2,
+      "imatge": "https://www.buscatucoche.com/wp-content/uploads/2021/12/tipos-senales-trafico-circulares.jpg"
+    },
+    {
+      "id": 2,
+      "pregunta": "¿Qué vehículos deben llevar siempre encendidas las luces de cruce durante el día?",
+      "respostes": [
+        "Los autobuses",
+        "Los vehículos agrícolas",
+        "Las motocicletas",
+        "Los vehículos de emergencia"
+      ],
+      "resposta_correcta": 2,
+      "imatge": "https://www.fundacionmapfre.org/media/educacion-divulgacion/prevencion/accidentes-mayores/luces-cruce-dia-1194x585-1.jpg"
+    },
+    {
+      "id": 3,
+      "pregunta": "Si al aproximarse a una intersección, observa a un agente con el brazo levantado verticalmente, debe detenerse…",
+      "respostes": [
+        "sólo si ya ha entrado en la intersección.",
+        "sólo si ve al agente de frente y siempre que pueda hacerlo en condiciones de seguridad.",
+        "siempre que pueda hacerlo en condiciones de seguridad.",
+        "Puede"
+      ],
+      "resposta_correcta": 2,
+      "imatge": "https://img.freepik.com/fotos-premium/mujer-policia-sonriente-toma-juramento-mano-derecha-levantada-ejemplificando-deber-orgullo_86638-2348.jpg"
+    },
+    {
+      "id": 4,
+      "pregunta": "¿Qué tipo de daños con carácter general, cubre el seguro de responsabilidad civil de suscripción obligatoria (SOA)?",
+      "respostes": [
+        "Nada.",
+        "Solamente los daños personales.",
+        "Los daños personales y los materiales.",
+        "Otras"
+      ],
+      "resposta_correcta": 2,
+      "imatge": "https://images.prismic.io/obikares/68209ada-34e4-425f-85f9-92a39c6aca6c_un.jpg"
+    },
+    {
+      "pregunta": "¿Cómo debe ser la velocidad de circulación de un vehículo para una conducción económica?",
+      "imatge": "https://practicatest.com/views/layout/default/img/tests/B/528d0efba90ab3019480dbd81a4195e0.jpg",
+      "respostes": [
+        "Uniforme",
+        "Brusca",
+        "Cambiante",
+        "TROMPOOOOOO"
+      ],
+      "resposta_correcta": 0,
+      "id": 5
+    },
+    {
+      "pregunta": "¿Qué es el ángulo muerto?",
+      "imatge": "https://vialtest.com/static/images/test/B/119c897d6a20b0255675f5ed83791e6f.jpg",
+      "respostes": [
+        "Es una parte de los coches que puede producir accidentes.",
+        "Es una zona alrededor del vehículo que no se ve con los retrovisores.",
+        "Es la zona sin visibilidad que tiene el conductor al coger una curva.",
+        "Un rectangulo muerto"
+      ],
+      "resposta_correcta": 1,
+      "id": 6
+    },
+    {
+      "pregunta": "Cuando las cintas no quedan bien estiradas, el cinturón de seguridad...",
+      "imatge": "https://vialtest.com/static/images/test/B/2974bf23ce25626d02e262dcf35b94a5.png",
+      "respostes": [
+        "Es decoracion",
+        "protege más en caso de accidente.",
+        "no reduce su eficacia en caso de accidente.",
+        "pierde eficacia y puede provocar lesiones durante el accidente."
+      ],
+      "resposta_correcta": 3,
+      "id": 7
+    },
+    {
+      "pregunta": "Está prohibido conducir un vehículo prioritario en servicio de urgencia con una tasa de alcohol en aire espirado superior a...",
+      "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRavboHQq5OPtBqLFQ320VRUfQSc-6kyDWrsA&s",
+      "respostes": [
+        "0,15 miligramos por litro",
+        "0,25 miligramos por litro",
+        "0,30 miligramos por litro",
+        "VozkaLimon"
+      ],
+      "resposta_correcta": 0,
+      "id": 8
+    },
+    {
+      "pregunta": "¿Deben llevar casco los pasajeros de un cuadriciclo?",
+      "imatge": "https://vialtest.com/static/images/test/B/a91da6ac32546f79d195d2f74cc166c1.jpg",
+      "respostes": [
+        "Armadura titanica",
+        "Solo cuando el cuadriciclo no cuente con estructura de autoprotección o cinturon de seguridad",
+        "Si, pero solo en vías interurbanas y de noche",
+        "Si, en todos los casos"
+      ],
+      "resposta_correcta": 1,
+      "id": 9
+    },
+    {
+      "pregunta": "¿Son las travesías consideradas vías urbanas cuando se encuentran dentro de poblado?",
+      "imatge": "https://vialtest.com/static/images/test/B/300a43bf5172c4b0c1ca6d25ef8f7b22.JPG",
+      "respostes": [
+        "No, en ningún caso",
+        "Dependerá de los edificios que se tengan alrededor",
+        "Solo en marte",
+        "Sí"
+      ],
+      "resposta_correcta": 3,
+      "id": 10
+    },
+    {
+      "pregunta": "¿A qué parte transmite velocidad de giro la caja de cambios de un vehículo?",
+      "imatge": "https://vialtest.com/static/images/test/B/7d130bdb1e568d496ba74c0e49ba9765.jpg",
+      "respostes": [
+        "A la caja de velocidades",
+        "Al embrague",
+        "Al árbol de transmisión",
+        "El gato"
+      ],
+      "resposta_correcta": 2,
+      "id": 11
+    },
+    {
+      "pregunta": "¿Es obligatorio que un vehículo lleve limpiafaros?",
+      "imatge": "https://vialtest.com/static/images/test/B/0d99d2f7f3805d5600a7c34796e9b441.jpg",
+      "respostes": [
+        "Si, pero únicamente en vías secundarias",
+        "No es obligatorio, pero si recomendable",
+        "Si, para mantener los faros limpios y que alumbren mejor",
+        "Tiene que ser de criptonita"
+      ],
+      "resposta_correcta": 1,
+      "id": 12
+    },
+    {
+      "pregunta": "¿En qué tipo de vías se producen la mayor parte de las víctimas mortales?",
+      "imatge": "https://vialtest.com/static/images/test/B/26eecdef7dd0f9af187935b23c44a271.jpg",
+      "respostes": [
+        "En travesías.",
+        "En vías interurbanas.",
+        "En Pedralbes",
+        "En vías urbanas."
+      ],
+      "resposta_correcta": 1,
+      "id": 13
+    },
+    {
+      "pregunta": "¿Que luz se debe accionar para advertir la inmovilización de un vehículo en autopista?",
+      "imatge": "https://vialtest.com/static/images/test/B/1f164496b8fd832c30f6b27ff2ce4384.jpg",
+      "respostes": [
+        "Luz indicadora de dirección",
+        "Luz de gálibo",
+        "Luz de DIOS",
+        "Luz de emergencia"
+      ],
+      "resposta_correcta": 3,
+      "id": 14
+    },
+    {
+      "pregunta": "Entre los costes humanos en un accidente de tráfico se incluyen…",
+      "imatge": "https://vialtest.com/static/images/test/B/5418412065db674c0307f09c4dcb56c7.jpg",
+      "respostes": [
+        "La atención y el tratamiento de los heridos.",
+        "Sólo las víctimas mortales.",
+        "Los años de vida perdidos y el sufrimiento de las víctimas, familiares y amigos.",
+        "Las skins del fornite"
+      ],
+      "resposta_correcta": 2,
+      "id": 15
+    }
+  ]
+}
