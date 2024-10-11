@@ -51,29 +51,14 @@
       "tiempo_terminado": "7m 05s"
     },
     {
-      "id": 11,
-      "respuestas_correctas": 1,
-      "tiempo_terminado": "5"
+      "respuestas_correctas": 3,
+      "tiempo_terminado": "4s",
+      "id": 11
     },
     {
-      "id": 12,
-      "respuestas_correctas": 1,
-      "tiempo_terminado": "4"
-    },
-    {
-      "id": 13,
-      "respuestas_correctas": 1,
-      "tiempo_terminado": "13"
-    },
-    {
-      "id": 14,
-      "respuestas_correctas": 1,
-      "tiempo_terminado": "18"
-    },
-    {
-      "id": 15,
-      "respuestas_correctas": 1,
-      "tiempo_terminado": "28"
+      "respuestas_correctas": 0,
+      "tiempo_terminado": "3m",
+      "id": 12
     }
   ]
 }

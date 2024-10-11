@@ -7,11 +7,9 @@ const { spawn } = require('child_process');
 const app = express();
 const port = 3000;
 
-// Middleware
 app.use(cors());
 app.use(express.json());
-app.use("/img", express.static(path.join(__dirname, 'public'))); // Sirve archivos estáticos desde la carpeta public
-
+app.use("/img", express.static(path.join(__dirname, 'public'))); 
 // Ruta para cargar las preguntas
 app.get('/api/preguntes', (req, res) => {
   fs.readFile(path.join(__dirname, 'Projecte0.json'), 'utf8', (err, data) => {
@@ -19,14 +17,14 @@ app.get('/api/preguntes', (req, res) => {
       return res.status(500).json({ message: 'Error al cargar las preguntas' });
     }
     const preguntes = JSON.parse(data).preguntes;
-    res.json(preguntes); // Enviar las preguntas al frontend
+    res.json(preguntes);
   });
 });
 
 // Ruta para agregar una pregunta
 app.post('/api/agregar-pregunta', (req, res) => {
   const nuevaPregunta = req.body;
-  console.log('Recibido nueva pregunta:', nuevaPregunta); // Log para depurar
+  console.log('Recibido nueva pregunta:', nuevaPregunta);
 
   // Validación básica
   if (!nuevaPregunta.pregunta || !nuevaPregunta.respostes || nuevaPregunta.respostes.length === 0) {
@@ -40,8 +38,8 @@ app.post('/api/agregar-pregunta', (req, res) => {
     }
 
     const json = JSON.parse(data);
-    nuevaPregunta.id = json.preguntes.length > 0 ? json.preguntes[json.preguntes.length - 1].id + 1 : 1; // Asignar un ID nuevo
-    json.preguntes.push(nuevaPregunta); // Añadir la nueva pregunta
+    nuevaPregunta.id = json.preguntes.length > 0 ? json.preguntes[json.preguntes.length - 1].id + 1 : 1;
+    json.preguntes.push(nuevaPregunta);
 
     fs.writeFile(path.join(__dirname, 'Projecte0.json'), JSON.stringify(json, null, 2), (err) => {
       if (err) {
@@ -49,7 +47,7 @@ app.post('/api/agregar-pregunta', (req, res) => {
         return res.status(500).json({ message: 'Error al guardar la nueva pregunta' });
       }
 
-      console.log('Pregunta añadida correctamente:', nuevaPregunta); // Log para depurar
+      console.log('Pregunta añadida correctamente:', nuevaPregunta);
       res.status(201).json({ message: 'Pregunta añadida correctamente' });
     });
   });
@@ -65,7 +63,7 @@ app.delete('/api/eliminar-pregunta/:id', (req, res) => {
     }
 
     const json = JSON.parse(data);
-    json.preguntes = json.preguntes.filter(pregunta => pregunta.id !== parseInt(id)); // Filtrar la pregunta a eliminar
+    json.preguntes = json.preguntes.filter(pregunta => pregunta.id !== parseInt(id));
 
     fs.writeFile(path.join(__dirname, 'Projecte0.json'), JSON.stringify(json, null, 2), (err) => {
       if (err) {
@@ -94,7 +92,7 @@ app.put('/api/editar-pregunta/:id', (req, res) => {
     }
 
     // Actualizar la pregunta
-    preguntaActualizada.id = parseInt(id); // Asegurarse de que el ID se mantenga
+    preguntaActualizada.id = parseInt(id);
     json.preguntes[index] = preguntaActualizada;
 
     fs.writeFile(path.join(__dirname, 'Projecte0.json'), JSON.stringify(json, null, 2), (err) => {
@@ -111,16 +109,16 @@ app.get('/api/estadisticas/generar', (req, res) => {
   const pythonPath = path.join(__dirname, 'Practica.py');
   const pythonProcess = spawn('python', [pythonPath, 'Estadisticas.JSON']); 
 
-  let hasResponded = false;  // Variable para asegurar que solo se responda una vez
+  let hasResponded = false;
 
   pythonProcess.stdout.on('data', (data) => {
-    if (hasResponded) return;  // Si ya se ha respondido, no hacer nada
+    if (hasResponded) return;
 
     console.log(`stdout: ${data}`);
     try {
       const resultados = JSON.parse(data);
       res.json(resultados);
-      hasResponded = true;  // Marcar que se ha enviado una respuesta
+      hasResponded = true;
     } catch (error) {
       console.error("Error al parsear la salida de Python:", error);
       if (!hasResponded) {
@@ -147,26 +145,34 @@ app.get('/api/estadisticas/generar', (req, res) => {
   });
 });
 
-// Ruta para cargar las estadísticas
 app.get('/api/estadisticas', (req, res) => {
   fs.readFile(path.join(__dirname, 'Estadisticas.JSON'), 'utf8', (err, data) => {
     if (err) {
       return res.status(500).json({ message: 'Error al cargar las estadísticas' });
     }
     const estadisticas = JSON.parse(data).estadisticas;
-    res.json(estadisticas); // Enviar las estadísticas al frontend
+    res.json(estadisticas);
   });
 });
 
-// Ruta para agregar una estadística
+
 app.post('/api/agregar-estadistica', (req, res) => {
   const nuevaEstadistica = req.body;
-  console.log('Recibida nueva estadística:', nuevaEstadistica); // Log para depurar
+  console.log('Recibida nueva estadística:', nuevaEstadistica);
 
-  // Validación básica
-  if (!nuevaEstadistica.respuestas_correctas || !nuevaEstadistica.tiempo_terminado) {
+  if (typeof nuevaEstadistica.respuestas_correctas !== 'number' || !nuevaEstadistica.tiempo_terminado) {
     return res.status(400).json({ message: 'Formato de estadística inválido' });
   }
+  let tiempoFormateado;
+  if (nuevaEstadistica.tiempo_terminado >= 60) {
+    const minutos = Math.floor(nuevaEstadistica.tiempo_terminado / 60);
+    const segundos = nuevaEstadistica.tiempo_terminado % 60;
+    tiempoFormateado = minutos > 0 ? `${minutos}m` : `${segundos}s`;
+  } else {
+    tiempoFormateado = `${nuevaEstadistica.tiempo_terminado}s`;
+  }
+
+  nuevaEstadistica.tiempo_terminado = tiempoFormateado;
 
   fs.readFile(path.join(__dirname, 'Estadisticas.JSON'), 'utf8', (err, data) => {
     if (err) {
@@ -174,9 +180,16 @@ app.post('/api/agregar-estadistica', (req, res) => {
       return res.status(500).json({ message: 'Error al leer el archivo de estadísticas' });
     }
 
-    const json = JSON.parse(data);
+    let json;
+    try {
+      json = JSON.parse(data);
+    } catch (parseError) {
+      console.error('Error al parsear el JSON:', parseError);
+      return res.status(500).json({ message: 'Error al procesar las estadísticas' });
+    }
+
     nuevaEstadistica.id = json.estadisticas.length > 0 ? json.estadisticas[json.estadisticas.length - 1].id + 1 : 1; // Asignar un ID nuevo
-    json.estadisticas.push(nuevaEstadistica); // Añadir la nueva estadística
+    json.estadisticas.push(nuevaEstadistica);
 
     fs.writeFile(path.join(__dirname, 'Estadisticas.JSON'), JSON.stringify(json, null, 2), (err) => {
       if (err) {
@@ -184,11 +197,15 @@ app.post('/api/agregar-estadistica', (req, res) => {
         return res.status(500).json({ message: 'Error al guardar la nueva estadística' });
       }
 
-      console.log('Estadística añadida correctamente:', nuevaEstadistica); // Log para depurar
-      res.status(201).json({ message: 'Estadística añadida correctamente' });
+      console.log('Estadística añadida correctamente:', nuevaEstadistica);
+      res.status(201).json({ message: 'Estadística añadida correctamente', estadistica: nuevaEstadistica });
     });
   });
 });
+
+
+
+
 
 // Iniciar el servidor
 app.listen(port, () => {
