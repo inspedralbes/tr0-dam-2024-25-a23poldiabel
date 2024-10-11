@@ -113,7 +113,6 @@ export default {
     async agregarPregunta() {
       console.log('Botón Agregar Pregunta clicado');
   
-      // Validar que los campos no estén vacíos
       if (
         this.nuevaPregunta.pregunta.trim() === '' ||
         this.nuevaPregunta.imatge.trim() === '' ||
@@ -121,15 +120,16 @@ export default {
         this.nuevaPregunta.resposta_correcta === null
       ) {
         alert('Por favor, completa todos los campos.');
-        return; // Salir del método si hay campos vacíos
+        return;
       }
 
       const nuevaPregunta = {
-        pregunta: this.nuevaPregunta.pregunta,
-        imatge: this.nuevaPregunta.imatge,
-        respostes: this.nuevaPregunta.respostes.split('/#').map((res) => res.trim()),
-        resposta_correcta: this.nuevaPregunta.resposta_correcta
+          pregunta: this.nuevaPregunta.pregunta,
+          imatge: this.nuevaPregunta.imatge,
+          respostes: this.nuevaPregunta.respostes.split('/#').map((res) => res.trim()),
+          resposta_correcta: this.nuevaPregunta.resposta_correcta
       };
+
 
       try {
         const response = await fetch('http://localhost:3000/api/agregar-pregunta', {
@@ -147,7 +147,7 @@ export default {
 
         alert('Pregunta añadida correctamente');
         this.resetForm();
-        this.cargarPreguntas(); // Recargar preguntas después de añadir
+        this.cargarPreguntas();
       } catch (error) {
         console.error('Error al agregar la pregunta:', error);
         alert('Ocurrió un error al enviar la pregunta: ' + error.message);
@@ -164,21 +164,21 @@ export default {
           throw new Error('Error al eliminar la pregunta');
         }
 
-        this.cargarPreguntas(); // Recargar preguntas después de eliminar
+        this.cargarPreguntas();
       } catch (error) {
         console.error('Error al eliminar la pregunta:', error);
       }
     },
 
     editarPregunta(pregunta) {
-      this.nuevaPregunta = { ...pregunta, respostes: pregunta.respostes.join('/#') }; // Rellenar el formulario con la pregunta a editar
-      this.isEditing = true; // Cambiar el modo a edición
+      this.nuevaPregunta = { ...pregunta, respostes: pregunta.respostes.join('/#') };
+      this.isEditing = true;
     },
 
     async actualizarPregunta() {
       if (!this.nuevaPregunta.id) {
         alert('No se puede actualizar, ID no encontrado.');
-        return; // Evitar la actualización si no hay ID
+        return;
       }
       
       try {
@@ -189,7 +189,7 @@ export default {
           },
           body: JSON.stringify({
             ...this.nuevaPregunta,
-            respostes: this.nuevaPregunta.respostes.split('/#') // Convertir respuestas en array
+            respostes: this.nuevaPregunta.respostes.split('/#')
           })
         });
 
@@ -197,9 +197,9 @@ export default {
           throw new Error('Error al actualizar la pregunta');
         }
 
-        this.cargarPreguntas(); // Recargar preguntas
-        this.resetForm(); // Limpiar el formulario
-        this.isEditing = false; // Cambiar el modo a agregar
+        this.cargarPreguntas();
+        this.resetForm();
+        this.isEditing = false;
       } catch (error) {
         console.error('Error al actualizar la pregunta:', error);
       }
@@ -207,7 +207,7 @@ export default {
 
     resetForm() {
       this.nuevaPregunta = { pregunta: '', imatge: '', respostes: '', resposta_correcta: null };
-      this.isEditing = false; // Cambiar el modo a agregar
+      this.isEditing = false;
     }
   }
 };

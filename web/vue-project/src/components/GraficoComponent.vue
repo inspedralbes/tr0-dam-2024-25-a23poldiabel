@@ -1,6 +1,6 @@
 <template>
     <div>
-      <canvas id="myChart" width="800" height="400"></canvas> <!-- Ajustar el tamaño aquí -->
+      <canvas id="myChart" width="800" height="400"></canvas>
     </div>
 </template>
 
@@ -15,7 +15,7 @@ export default {
     }
   },
   mounted() {
-    Chart.register(...registerables); // Registra todos los elementos de Chart.js
+    Chart.register(...registerables);
     this.crearGrafico();
   },
   methods: {
@@ -24,22 +24,22 @@ export default {
       const ids = this.estadisticas.map(stat => stat.id);
       const respuestasCorrectas = this.estadisticas.map(stat => stat.respuestas_correctas);
 
-      // Convertir tiempo de formato "Xm Ys" a segundos
+
       const tiempos = this.estadisticas.map(stat => {
-        const tiempo = stat.tiempo_terminado; // "2m 30s"
-        const partes = tiempo.split(' '); // ["2m", "30s"]
+        const tiempo = stat.tiempo_terminado;
+        const partes = tiempo.split(' ');
         let totalSegundos = 0;
 
         partes.forEach(p => {
-          const valor = parseInt(p); // Obtener el número
+          const valor = parseInt(p);
           if (p.includes('m')) {
-            totalSegundos += valor * 60; // Convertir minutos a segundos
+            totalSegundos += valor * 60;
           } else if (p.includes('s')) {
-            totalSegundos += valor; // Sumar segundos
+            totalSegundos += valor;
           }
         });
 
-        return totalSegundos; // Retornar el tiempo en segundos
+        return totalSegundos;
       });
 
       new Chart(ctx, {
@@ -53,15 +53,15 @@ export default {
               backgroundColor: 'rgba(75, 192, 192, 0.2)',
               borderColor: 'rgba(75, 192, 192, 1)',
               borderWidth: 1,
-              yAxisID: 'y1' // Asignar a un eje Y
+              yAxisID: 'y1'
             },
             {
-              label: 'Tiempo (segundos)', // Nuevo conjunto de datos
+              label: 'Tiempo (segundos)',
               data: tiempos,
               backgroundColor: 'rgba(153, 102, 255, 0.2)',
               borderColor: 'rgba(153, 102, 255, 1)',
               borderWidth: 1,
-              yAxisID: 'y2' // Asignar a otro eje Y
+              yAxisID: 'y2'
             }
           ]
         },
@@ -76,7 +76,7 @@ export default {
             },
             y2: {
               beginAtZero: true,
-              position: 'right', // Eje Y en la derecha
+              position: 'right',
               title: {
                 display: true,
                 text: 'Tiempo (segundos)'
@@ -86,7 +86,7 @@ export default {
           plugins: {
             legend: {
               labels: {
-                color: 'black' // Asegúrate de que las etiquetas sean visibles
+                color: 'black'
               }
             }
           }
@@ -99,8 +99,8 @@ export default {
 
 <style scoped>
 canvas {
-  max-width: 800px; /* Aumentar el tamaño máximo */
+  max-width: 800px;
   margin: auto;
-  background-color: white; /* Fondo blanco para el canvas */
+  background-color: white;
 }
 </style>
